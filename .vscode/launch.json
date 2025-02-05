@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MainApp",
+            "request": "launch",
+            "mainClass": "MainApp",
+            "projectName": "VideoPlayerProject (copia)_91011038",
+            "vmArgs": "--module-path /home/COTARELO/mvidal1/Downloads/javafx-sdk-21.0.6/lib --add-modules javafx.controls,javafx.fxml,javafx.media"
+        },
+        {
+            "type": "java",
+            "name": "MainApp",
+            "request": "launch",
+            "mainClass": "MainApp",
+            "projectName": "VideoPlayerProject_3ade2b9c",
+            "vmArgs": "--module-path /home/COTARELO/mvidal1/Downloads/javafx-sdk-21.0.6/lib --add-modules javafx.controls,javafx.fxml,javafx.media"
+        },
+        {
+            "type": "java",
+            "name": "MainApp",
+            "request": "launch",
+            "mainClass": "MainApp",
+            "projectName": "VideoPlayerProject_3ade249c",
+            "vmArgs": "--module-path /home/COTARELO/mvidal1/Downloads/javafx-sdk-21.0.6/lib --add-modules javafx.controls,javafx.fxml,javafx.media"
+        }
+    ]
+}

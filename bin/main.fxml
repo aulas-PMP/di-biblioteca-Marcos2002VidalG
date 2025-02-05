@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="MainController">
+
+    <!-- Barra de menú superior -->
+    <top>
+        <MenuBar>
+            <Menu text="Archivo">
+                <MenuItem onAction="#handleOpenFile" text="Abrir" />
+                <MenuItem onAction="#handleExit" text="Salir" />
+            </Menu>
+            <Menu text="Biblioteca">
+                <MenuItem onAction="#handleManageLibrary" text="Administrar Biblioteca" />
+            </Menu>
+            <Menu text="Ver">
+                <MenuItem onAction="#toggleFullscreen" text="Pantalla Completa" />
+                <CheckMenuItem fx:id="toggleEditor" onAction="#toggleEditor" text="Mostrar/Ocultar Editor" />
+                <CheckMenuItem fx:id="toggleLibrary" onAction="#toggleLibrary" text="Mostrar/Ocultar Biblioteca" />
+            </Menu>
+            <Menu text="Acerca">
+                <MenuItem onAction="#showAboutDialog" text="Información" />
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Área principal -->
+<center>
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Panel de edición izquierdo -->
+        <VBox fx:id="editorPanel" prefWidth="150" spacing="15" style="-fx-background-color: #1a1a1a; -fx-padding: 15; -fx-border-radius: 15; -fx-background-radius: 15;" HBox.hgrow="NEVER">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Edición" />
+            <VBox spacing="8">
+                <Label style="-fx-text-fill: white;" text="Velocidad:" />
+                <Button onAction="#setSpeed05" style="-fx-base: #404040; -fx-text-fill: white;" text="0.5x" />
+                <Button onAction="#setSpeed075" style="-fx-base: #404040; -fx-text-fill: white;" text="0.75x" />
+                <Button onAction="#setSpeed10" style="-fx-base: #404040; -fx-text-fill: white;" text="1.0x" />
+                <Button onAction="#setSpeed15" style="-fx-base: #404040; -fx-text-fill: white;" text="1.5x" />
+                <Button onAction="#setSpeed20" style="-fx-base: #404040; -fx-text-fill: white;" text="2.0x" />
+            </VBox>
+            <VBox spacing="8">
+                <Label style="-fx-text-fill: white;" text="Tamaño:" />
+                <Button onAction="#reduceSize" style="-fx-base: #404040; -fx-text-fill: white;" text="Reducir" />
+                <Button onAction="#increaseSize" style="-fx-base: #404040; -fx-text-fill: white;" text="Ampliar" />
+            </VBox>
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="15" HBox.hgrow="ALWAYS">
+    <Label fx:id="fileTitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Reproductor Multimedia" />
+    <StackPane style="-fx-background-color: #000000; -fx-border-radius: 10; -fx-background-radius: 10;" VBox.vgrow="ALWAYS">
+        <MediaView fx:id="mediaView" fitWidth="800" fitHeight="450" preserveRatio="true" />
+    </StackPane>
+    <Slider fx:id="progressSlider" max="100" min="0" onMouseReleased="#seekVideo" prefWidth="800" />
+</VBox>
+
+
+        <!-- Biblioteca derecha -->
+        <VBox fx:id="libraryPanel" prefWidth="250" spacing="10" style="-fx-background-color: #1a1a1a; -fx-padding: 15; -fx-border-radius: 15; -fx-background-radius: 15;" HBox.hgrow="NEVER">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Biblioteca" />
+            <TableView fx:id="libraryTable" onMouseClicked="#handleLibrarySelection" prefHeight="453.0" prefWidth="220.0">
+                <columns>
+                    <TableColumn fx:id="nameColumn" prefWidth="82.0" text="Nombre" />
+                    <TableColumn fx:id="formatColumn" prefWidth="50.0" text="Formato" />
+                    <TableColumn fx:id="durationColumn" prefWidth="87.0" text="Duración" />
+                </columns>
+            </TableView>
+        </VBox>
+    </HBox>
+</center>
+
+
+    <!-- Controles inferiores -->
+    <bottom>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10; -fx-background-color: #2a2a2a;">
+            <HBox alignment="CENTER" spacing="25">
+                <Button onAction="#previous" style="-fx-font-size: 18; -fx-base: #404040; -fx-text-fill: white;" text="⏮" />
+                <Button onAction="#pause" style="-fx-font-size: 18; -fx-base: #404040; -fx-text-fill: white;" text="⏸" />
+                <Button onAction="#play" style="-fx-font-size: 18; -fx-base: #404040; -fx-text-fill: white;" text="▶" />
+                <Button onAction="#stop" style="-fx-font-size: 18; -fx-base: #404040; -fx-text-fill: white;" text="⏹" />
+                <Button onAction="#next" style="-fx-font-size: 18; -fx-base: #404040; -fx-text-fill: white;" text="⏭" />
+                <Slider fx:id="volumeSlider" max="1" min="0" onMouseReleased="#adjustVolume" prefWidth="150" style="-fx-color: #404040;" value="0.5" />
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
